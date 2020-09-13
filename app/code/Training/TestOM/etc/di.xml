@@ -11,4 +11,14 @@
             </argument>
         </arguments>
     </type>
+    <preference for="Training\TestOM\Model\ManagerInterface" type="Training\TestOM\Model\ManagerCustomImplementation"/>
+    <type name="Training\TestOM\Model\PlayWithTest">
+        <arguments>
+            <argument name="manager" xsi:type="object">Training\TestOM\Model\ManagerCustomImplementation</argument>
+            <argument name="arrayList" xsi:type="array">
+                <item name="item_1" xsi:type="string"> array text item</item>
+                <item name="item_2" xsi:type="number">6</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
