@@ -8,25 +8,14 @@ use Magento\Framework\Event\ObserverInterface;
 class RedirectToLogin implements ObserverInterface
 {
 
-    /**
-     * @var \Magento\Framework\App\Response\RedirectInterface
-     */
     private $redirect;
 
-    /**
-     * @var  \Magento\Framework\App\ActionFlag
-     */
     private $actionFlag;
 
-    /**
-     * @param \Magento\Framework\App\Response\RedirectInterface $redirect
-     * @param \Magento\Framework\App\ActionFlag $actionFlag
-     */
-    public function __consturct(
+    public function __construct(
         \Magento\Framework\App\Response\RedirectInterface $redirect,
         \Magento\Framework\App\ActionFlag $actionFlag
-    )
-    {
+    ) {
         $this->actionFlag = $actionFlag;
         $this->redirect = $redirect;
     }
@@ -41,7 +30,10 @@ class RedirectToLogin implements ObserverInterface
             && $request->getActionName() == 'view'
 
         ) {
-            $observer->getControllerAction()->getResponse()->setRedirect('customer/account/login');
+            $controller = $observer->getEvent()->getData('controller_action');
+            $this->actionFlag->set('', \Magento\Framework\App\Action\Action::FLAG_NO_DISPATCH, true);
+            $this->redirect->redirect($controller->getResponse(), 'customer/account/login');
+            //->getResponse()->setRedirect('customer/account/login');
         }
     }
 }
