@@ -8,12 +8,10 @@ class Template
         \Magento\Framework\View\Element\Template $subject,
         $result
     ) {
-
-        if($subject->getTemplate() == 'Magento_Search::form.mini.phtml'){
+        if ($subject->getTemplate() == 'Magento_Search::form.mini.phtml') {
             $result = '<div><p>' . $subject->getTemplate() . '</p>' .
                 '<p>' . get_class($subject) . '</p>' . $result . "</div>";
         }
-
 
         return $result;
     }
