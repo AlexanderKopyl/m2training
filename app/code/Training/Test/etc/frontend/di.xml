@@ -11,7 +11,7 @@
 <!--        <plugin name="rightsForProduct" type="Training\Test\Plugin\Controller\Product\View"/>-->
 <!--    </type>-->
 
-    <preference for="Magento\Framework\App\FrontControllerInterface" type="Training\Test\App\FrontController"/>
+    <!--<preference for="Magento\Framework\App\FrontControllerInterface" type="Training\Test\App\FrontController"/>-->
     <type name="Magento\Framework\App\Router\NoRouteHandlerList">
         <arguments>
             <argument name="handlerClassesList" xsi:type="array">
