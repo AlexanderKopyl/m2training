@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace Training\Test\Controller\Product;
-
 
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Json\Helper\Data;
@@ -23,13 +22,11 @@ class View extends \Magento\Catalog\Controller\Product\View
         Data $jsonHelper = null,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
-    )
-    {
+    ) {
         $this->customerSession = $customerSession;
         $this->redirectFactory = $redirectFactory;
         parent::__construct($context, $viewHelper, $resultForwardFactory, $resultPageFactory, $logger, $jsonHelper);
     }
-
 
     public function execute()
     {

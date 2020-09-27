@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Training\Test\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
