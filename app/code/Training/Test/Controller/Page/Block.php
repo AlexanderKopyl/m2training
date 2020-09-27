@@ -36,11 +36,11 @@ class Block extends Action
     {
         // TODO: Implement execute() method.
 
-        $layout = $this->layoutFactory->create();
-        $block = $layout->createBlock('Training\Test\Block\Test');
-        $this->getResponse()->appendBody($block->toHtml());
+//        $layout = $this->layoutFactory->create();
+//        $block = $layout->createBlock('Training\Test\Block\Test');
+//        $this->getResponse()->appendBody($block->toHtml());
 
-//        $resultPage = $this->resultPageFactory->create();
-//        return $resultPage;
+        $resultPage = $this->resultPageFactory->create();
+        return $resultPage;
     }
 }
