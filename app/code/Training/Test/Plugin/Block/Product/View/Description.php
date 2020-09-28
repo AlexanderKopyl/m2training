@@ -2,13 +2,11 @@
 
 namespace Training\Test\Plugin\Block\Product\View;
 
-class Description
+class Description extends \Magento\Catalog\Block\Product\View\Description
 {
-    public function afterGetProduct(
-        \Magento\Catalog\Block\Product\View\Description $subject,
-        $result
+    public function beforeToHtml(
+        \Magento\Catalog\Block\Product\View\Description $subject
     ) {
-        $result->setDescription('Test Description');
-        return $result;
+        $subject->getProduct()->setDescription('Test Description');
     }
 }
