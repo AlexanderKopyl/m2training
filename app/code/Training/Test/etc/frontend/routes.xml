@@ -13,8 +13,8 @@
         <!--<route id="cms" frontName="cms">
             <module name="Training_Test" before="Magento_Cms"/>
         </route>-->
-        <route id="catalog" frontName="catalog">
-           <module name="Training_Test" before="Magento_Catalog"/>
-       </route>
+<!--        <route id="catalog" frontName="catalog">-->
+<!--            <module name="Training_Test" before="Magento_Catalog"/>-->
+<!--        </route>-->
     </router>
 </config>
