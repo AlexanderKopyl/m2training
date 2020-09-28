@@ -10,6 +10,10 @@ class Description extends \Magento\Catalog\Block\Product\View\Description
         // exercise 3.4
 //        $subject->getProduct()->setDescription('Test Description');
         // exercise 3.7
-        $subject->setTemplate('Training_Test::description.phtml');
+//        $subject->setTemplate('Training_Test::description.phtml');
+        // exercise 3.8
+        if ($subject->getNameInLayout() == 'product.info.sku') {
+            $subject->setTemplate('Training_Test::description.phtml');
+        }
     }
 }
