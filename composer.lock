@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7260755ab895d2c453a661ff9f990c29",
+    "content-hash": "3082f80fca6507f59b731ad22bc8fbe9",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -46,6 +46,44 @@
                 "cbor"
             ],
             "time": "2019-08-22T19:21:35+00:00"
+        },
+        {
+            "name": "alexsanderkopyl/helloworld",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AlexanderKopyl/HelloWorld.git",
+                "reference": "c52b54e698fc974c37a455148aef9fae7da3dda1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AlexanderKopyl/HelloWorld/zipball/c52b54e698fc974c37a455148aef9fae7da3dda1",
+                "reference": "c52b54e698fc974c37a455148aef9fae7da3dda1",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "AlexsanderKopyl\\Helloworld\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "alexsander",
+                    "email": "alexsander11115@gmail.com",
+                    "homepage": "https://github.com/AlexanderKopyl/HelloWorld",
+                    "role": "Leader"
+                }
+            ],
+            "description": "first module for magento in github",
+            "time": "2020-10-02T14:59:52+00:00"
         },
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -22165,6 +22203,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-08-04T08:28:15+00:00"
         },
         {
@@ -22770,6 +22809,7 @@
             ],
             "description": "FinderFacade is a convenience wrapper for Symfony's Finder component.",
             "homepage": "https://github.com/sebastianbergmann/finder-facade",
+            "abandoned": true,
             "time": "2020-02-08T06:07:58+00:00"
         },
         {

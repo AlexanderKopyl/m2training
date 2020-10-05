@@ -11,8 +11,9 @@
         "sort-packages": true
     },
     "require": {
-        "magento/product-community-edition": "2.4.0",
-        "magento/composer-root-update-plugin": "~1.0"
+        "alexsanderkopyl/helloworld": "^1.0",
+        "magento/composer-root-update-plugin": "~1.0",
+        "magento/product-community-edition": "2.4.0"
     },
     "require-dev": {
         "allure-framework/allure-phpunit": "~1.2.0",
