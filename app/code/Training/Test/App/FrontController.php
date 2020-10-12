@@ -43,8 +43,7 @@ class FrontController extends \Magento\Framework\App\FrontController
         LoggerInterface $logger,
         State $appState = null,
         AreaList $areaList = null
-    )
-    {
+    ) {
         parent::__construct($routerList, $response, $requestValidator, $messageManager, $logger, $appState, $areaList);
         $this->response = $response;
         $this->logger = $logger;

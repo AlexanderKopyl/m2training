@@ -3,7 +3,6 @@
 
 namespace Training\Test\App\Router;
 
-
 class NoRouteHandler implements \Magento\Framework\App\Router\NoRouteHandlerInterface
 {
 

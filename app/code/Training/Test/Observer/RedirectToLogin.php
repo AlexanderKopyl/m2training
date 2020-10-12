@@ -24,8 +24,7 @@ class RedirectToLogin implements ObserverInterface
     {
         $request = $observer->getEvent()->getData('request');
 
-        if (
-            $request->getModuleName() == 'catalog'
+        if ($request->getModuleName() == 'catalog'
             && $request->getControllerName() == 'product'
             && $request->getActionName() == 'view'
 

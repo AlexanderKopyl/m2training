@@ -1,0 +1,23 @@
+<?php $viewModel = $block->getData('view_model');?>
+<div data-bind="scope: 'countStock'">
+<!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "countStock": {
+                    "component": "Training_Product/js/countStock",
+                    "config": {
+                        "template": "Training_Product/countStock",
+                        "url": <?= json_encode($viewModel->getActionUrl()) ?>,
+                        "showCountStock": "<?= $viewModel->canShow() ?>",
+                        "product_id": <?=  $viewModel->getCurrentProductId() ?: 0?>
+                    }
+                }
+            }
+        }
+    }
+}
+</script>

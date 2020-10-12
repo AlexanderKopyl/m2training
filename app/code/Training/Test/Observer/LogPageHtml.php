@@ -22,7 +22,6 @@ class LogPageHtml implements ObserverInterface
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
-
     }
 
     public function execute(Observer $observer)
