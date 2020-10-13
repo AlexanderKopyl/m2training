@@ -9,6 +9,10 @@
         </div>
         <?= $block->getPaginationHtml() ?>
     </div>
+    <div class="feedback-statistic">
+        <p><?= __('Total number of submitted feedbacks: %1', $block->getAllFeedbackNumber()) ?></p>
+        <p><?= __('Total number of active feedbacks: %1', $block->getActiveFeedbackNumber()) ?></p>
+    </div>
     <div class="feedback-list">
         <?php foreach ($block->getFeedbackCollection() as $feedback): ?>
             <div class="feedback-item" style="background-color: #55ecf4; margin: 5px;">
