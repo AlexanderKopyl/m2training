@@ -10,26 +10,38 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
     private $_escaper;
 
+    /**
+     * @var \Magento\Framework\App\RequestInterface
+     */
+    private $_request;
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     */
+    private $_productRepository;
 
     public function __construct(
         \Magento\Framework\UrlInterface $urlBuilder,
-        \Magento\Framework\Registry $registry,
+        \Magento\Framework\App\RequestInterface $request,
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Magento\Framework\Escaper $escaper
     ) {
         $this->urlBuilder = $urlBuilder;
-        $this->_registry = $registry;
         $this->_escaper = $escaper;
+        $this->_request = $request;
+        $this->_productRepository= $productRepository;
     }
 
     private function getCurrentProduct()
     {
-        return $this->_registry->registry('current_product');
+        $product_id = $this->_request->getParam('id');
+        $currentProduct = $this->_productRepository->getById($product_id);
+
+        return $currentProduct;
     }
 
     public function getCurrentProductId()
     {
         $currentProduct = $this->getCurrentProduct();
-
         return $this->_escaper->escapeJs($currentProduct->getId());
     }
 
