@@ -13,7 +13,7 @@
                         "template": "Training_Product/countStock",
                         "url": <?= json_encode($viewModel->getActionUrl()) ?>,
                         "showCountStock": "<?= $viewModel->canShow() ?>",
-                        "product_id": <?=  $viewModel->getCurrentProductId() ?: 0?>
+                        "product_id": "<?=  $viewModel->getCurrentProductId() ?: 0?>"
                     }
                 }
             }

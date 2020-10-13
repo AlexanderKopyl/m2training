@@ -12,6 +12,7 @@ class Index implements \Magento\Framework\App\Action\HttpPostActionInterface
 
     protected $_stockItemRepository;
 
+
     public function __construct(
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\App\Request\Http $request,

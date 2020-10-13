@@ -28,7 +28,7 @@ define([
                 dataType: 'json'
             }).done(function (data) {
                 // data = JSON.parse(data);
-                // debugger
+                debugger
                 if(data){
                     self.count(data);
                 }

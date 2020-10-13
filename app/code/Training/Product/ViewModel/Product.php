@@ -8,15 +8,17 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
     private $_registry;
 
-    private $stockState;
+    private $_escaper;
 
 
     public function __construct(
         \Magento\Framework\UrlInterface $urlBuilder,
-        \Magento\Framework\Registry $registry
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Escaper $escaper
     ) {
         $this->urlBuilder = $urlBuilder;
         $this->_registry = $registry;
+        $this->_escaper = $escaper;
     }
 
     private function getCurrentProduct()
@@ -28,7 +30,7 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
     {
         $currentProduct = $this->getCurrentProduct();
 
-        return $currentProduct->getId();
+        return $this->_escaper->escapeJs($currentProduct->getId());
     }
 
     private function getCurrentProductType()
@@ -49,7 +51,7 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
     public function getActionUrl()
     {
-        return $this->urlBuilder->getUrl('training_product/stock/index');
+        return $this->urlBuilder->getUrl('training_product/stock');
         // it can be found in parent too
     }
 }
