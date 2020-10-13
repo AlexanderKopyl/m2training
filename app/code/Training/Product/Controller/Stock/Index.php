@@ -31,7 +31,7 @@ class Index implements \Magento\Framework\App\Action\HttpPostActionInterface
         $product_id = $this->_request->getPost('product_id');
         $result = $this->resultJsonFactory->create();
         if ($product_id) {
-            $result->setData(json_encode($this->getStockItemQty($product_id)));
+            $result->setData(json_encode(['count'=>$this->getStockItemQty($product_id)]));
         } else {
             $result->setData(null);
         }

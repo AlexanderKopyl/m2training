@@ -27,10 +27,10 @@ define([
                 data: {product_id:self.product_id},
                 dataType: 'json'
             }).done(function (data) {
-                // data = JSON.parse(data);
+                data = JSON.parse(data);
                 debugger
-                if(data){
-                    self.count(data);
+                if(data.count){
+                    self.count(data.count);
                 }
             }).always(function () {
                 self.isLoading(false);
