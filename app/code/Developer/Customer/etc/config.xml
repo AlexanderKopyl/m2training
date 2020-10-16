@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <developer_customer_rights>
+            <rights_settings>
+                <basket>1</basket>
+                <button_add>1</button_add>
+                <action_add>1</action_add>
+            </rights_settings>
+        </developer_customer_rights>
+    </default>
+</config>
