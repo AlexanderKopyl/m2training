@@ -2,6 +2,7 @@
 
 namespace Developer\Customer\Plugin\Checkout\Controller\Cart;
 
+use Developer\Logger\Logger\Logger;
 use Magento\Store\Model\ScopeInterface;
 
 class Add
@@ -21,16 +22,22 @@ class Add
      * @var \Magento\Customer\Model\Session
      */
     private $customerSession;
+    /**
+     * @var Logger
+     */
+    private $logger;
 
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scope,
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Customer\Model\Session $customerSession,
+        \Developer\Logger\Logger\Logger $logger,
         \Magento\Framework\Controller\Result\RedirectFactory $resultRedirectFactory
     ) {
         $this->scopeConfig = $scope;
         $this->messageManager = $messageManager;
         $this->customerSession = $customerSession;
+        $this->logger = $logger;
         $this->resultRedirectFactory = $resultRedirectFactory;
     }
 
@@ -50,7 +57,7 @@ class Add
             $this->messageManager->addErrorMessage(
                 __('Your cannot add product without login')
             );
-
+            $this->logger->info('I did something');
             $resultRedirect->setPath('customer/account/login');
 
             return $resultRedirect;
