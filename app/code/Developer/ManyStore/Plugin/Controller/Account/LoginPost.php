@@ -22,6 +22,15 @@ class LoginPost
      * @var \Magento\Customer\Api\CustomerRepositoryInterface
      */
     private $customerRepository;
+    /**
+     * @var \Magento\Store\Api\StoreRepositoryInterface
+     */
+    private $storeRepository;
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    private $storeManager;
+
 
     public function __construct(
         \Magento\Customer\Model\Session $customerSession,
