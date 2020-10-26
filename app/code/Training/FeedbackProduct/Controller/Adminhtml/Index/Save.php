@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Training\Feedback\Controller\Adminhtml\Index;
+namespace Training\FeedbackProduct\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -14,28 +14,36 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
     private $dataPersistor;
     private $feedbackRepository;
     private $feedbackFactory;
+    private $feedbackDataLoader;
+
     /**
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
      * @param \Training\Feedback\Api\FeedbackRepositoryInterface $feedbackRepository
      * @param \Training\Feedback\Model\FeedbackFactory $feedbackFactory
+     * @param \Training\FeedbackProduct\Model\FeedbackDataLoader $feedbackDataLoader
      */
     public function __construct(
         Context $context,
         DataPersistorInterface $dataPersistor,
         \Training\Feedback\Api\FeedbackRepositoryInterface $feedbackRepository,
-        \Training\Feedback\Model\FeedbackFactory $feedbackFactory
+        \Training\Feedback\Model\FeedbackFactory $feedbackFactory,
+        \Training\FeedbackProduct\Model\FeedbackDataLoader $feedbackDataLoader
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->feedbackRepository = $feedbackRepository;
         $this->feedbackFactory = $feedbackFactory;
+        $this->feedbackDataLoader = $feedbackDataLoader;
         parent::__construct($context);
     }
+
     public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
+
         $data = $this->getRequest()->getPostValue();
+
         if ($data) {
             if (isset($data['is_active']) && $data['is_active'] === 'true') {
                 $data['is_active'] = \Training\Feedback\Model\Feedback::STATUS_ACTIVE;
@@ -43,8 +51,11 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
             if (empty($data['feedback_id'])) {
                 $data['feedback_id'] = null;
             }
+
             $model = $this->feedbackFactory->create();
+
             $id = $this->getRequest()->getParam('feedback_id');
+
             if ($id) {
                 try {
                     $model = $this->feedbackRepository->getById($id);
@@ -55,6 +66,7 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
             }
             $model->setData($data);
             try {
+                $this->setProductsToFeedback($model, $data);
                 $this->feedbackRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved the feedback.'));
                 $this->dataPersistor->clear('training_feedback');
@@ -72,6 +84,17 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
             );
         }
         return $resultRedirect->setPath('*/*/');
+    }
+
+    private function setProductsToFeedback($feedback, $post)
+    {
+        $productIds = [];
+        if (isset($post['assigned_feedback_products']) && !empty($post['assigned_feedback_products'])) {
+            foreach ($post['assigned_feedback_products'] as $productData) {
+                $productIds[] = $productData['id'];
+            }
+        }
+        $this->feedbackDataLoader->addProductsToFeedbackByIds($feedback, $productIds);
     }
 
     private function processRedirect($model, $data, $resultRedirect)
