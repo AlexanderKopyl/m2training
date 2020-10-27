@@ -1,16 +1,15 @@
 <?php
 
-
 namespace Training\Feedback\Model;
 
-use Training\Feedback\Api\Data;
-use Training\Feedback\Api\FeedbackRepositoryInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Training\Feedback\Model\ResourceModel\Feedback as FeedbackResource;
+use Training\Feedback\Api\Data;
 use Training\Feedback\Api\Data\FeedbackInterfaceFactory as FeedbackFactory;
+use Training\Feedback\Api\FeedbackRepositoryInterface;
+use Training\Feedback\Model\ResourceModel\Feedback as FeedbackResource;
 use Training\Feedback\Model\ResourceModel\Feedback\CollectionFactory as FeedbackCollectionFactory;
 
 class FeedbackRepository implements FeedbackRepositoryInterface
@@ -77,11 +76,11 @@ class FeedbackRepository implements FeedbackRepositoryInterface
 
     /**
      * Load Feedback data by given Feedback Identity
-     * *
      * @param string $feedbackId
      * @return \Training\Feedback\Api\Data\FeedbackInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
+
     public function getById($feedbackId)
     {
         $feedback = $this->feedbackFactory->create();

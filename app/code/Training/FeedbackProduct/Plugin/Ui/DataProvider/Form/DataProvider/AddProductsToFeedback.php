@@ -33,25 +33,28 @@ class AddProductsToFeedback
         \Training\Feedback\Ui\DataProvider\Form\DataProvider $subject,
         $result
     ) {
-        if (count($result) > 0) {
-            foreach ($result as $index => $feedbackData) {
-                try {
-                    $feedback = $this->feedbackRepository->getById($feedbackData['feedback_id']);
-                } catch (NoSuchEntityException $e) {
-                    continue;
-                }
-                $products = $feedback->getExtensionAttributes()->getProducts();
-                if (!$products) {
-                    $result[$index]['assigned_feedback_products'] = [];
-                } else {
-                    $assignedProducts = [];
-                    foreach ($products as $product) {
-                        $assignedProducts[] = $this->prepareProductDataData($product);
+        if (is_array($result) || is_object($result)) {
+            if (count($result) > 0) {
+                foreach ($result as $index => $feedbackData) {
+                    try {
+                        $feedback = $this->feedbackRepository->getById($feedbackData['feedback_id']);
+                    } catch (NoSuchEntityException $e) {
+                        continue;
                     }
-                    $result[$index]['assigned_feedback_products'] = $assignedProducts;
+                    $products = $feedback->getExtensionAttributes()->getProducts();
+                    if (!$products) {
+                        $result[$index]['assigned_feedback_products'] = [];
+                    } else {
+                        $assignedProducts = [];
+                        foreach ($products as $product) {
+                            $assignedProducts[] = $this->prepareProductDataData($product);
+                        }
+                        $result[$index]['assigned_feedback_products'] = $assignedProducts;
+                    }
                 }
             }
         }
+
         return $result;
     }
 

@@ -38,16 +38,18 @@
                             <item name="0" xsi:type="array">
                                 <item name="targetName"
 
-                                      xsi:type="string">training_feedback_form.training_feedback_form.feedback_products.assign_feedback_products_mod
-                                    al</item>
+                                      xsi:type="string">
+                                    training_feedback_form.training_feedback_form.feedback_products.assign_feedback_products_modal
+                                </item>
 
                                 <item name="actionName" xsi:type="string">toggleModal</item>
                             </item>
                             <item name="1" xsi:type="array">
                                 <item name="targetName"
 
-                                      xsi:type="string">training_feedback_form.training_feedback_form.feedback_products.assign_feedback_products_mod
-                                    al.assign_feedback_products_grid</item>
+                                      xsi:type="string">
+                                    training_feedback_form.training_feedback_form.feedback_products.assign_feedback_products_modal.assign_feedback_products_grid
+                                </item>
 
                                 <item name="actionName" xsi:type="string">render</item>
                             </item>
@@ -56,12 +58,10 @@
                 </argument>
             </button>
         </container>
-        <dynamicRows name="assigned_feedback_products"
-                     component="Magento_Ui/js/dynamic-rows/dynamic-rows-grid"
-                     template="ui/dynamic-rows/templates/grid" sortOrder="20">
+        <dynamicRows name="assigned_feedback_products" component="Magento_Ui/js/dynamic-rows/dynamic-rows-grid"  template="ui/dynamic-rows/templates/grid" sortOrder="20">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="dataProvider" xsi:type="string">training_product_listing</item>
+                    <item name="dataProvider" xsi:type="string">feedback_product_listing</item>
                     <item name="map" xsi:type="array">
                         <item name="id" xsi:type="string">entity_id</item>
                         <item name="name" xsi:type="string">name</item>
@@ -185,10 +185,7 @@
                             <item name="class" xsi:type="string">action-primary</item>
                             <item name="actions" xsi:type="array">
                                 <item name="0" xsi:type="array">
-                                    <item name="targetName" xsi:type="string">index =
-
-                                        assign_feedback_products_grid</item>
-
+                                    <item name="targetName" xsi:type="string">index=assign_feedback_products_grid</item>
                                     <item name="actionName" xsi:type="string">save</item>
                                 </item>
                                 <item name="1" xsi:type="array">

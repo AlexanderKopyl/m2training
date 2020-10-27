@@ -39,14 +39,14 @@ class DataProvider extends ProductDataProvider
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         CollectionFactory $collectionFactory,
         RequestInterface $request,
         FeedbackRepositoryInterface $feedbackRepository,
-        $addFieldStrategies,
-        $addFilterStrategies,
+        array $addFieldStrategies,
+        array $addFilterStrategies,
         array $meta = [],
         array $data = []
     ) {
