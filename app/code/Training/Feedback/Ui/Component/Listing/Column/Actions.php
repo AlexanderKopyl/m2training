@@ -1,13 +1,12 @@
 <?php
 
-
 namespace Training\Feedback\Ui\Component\Listing\Column;
 
+use Magento\Framework\Escaper;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Magento\Framework\Escaper;
 
 class Actions extends Column
 {
@@ -40,8 +39,7 @@ class Actions extends Column
         Escaper $escaper,
         array $components = [],
         array $data = []
-    )
-    {
+    ) {
         $this->urlBuilder = $urlBuilder;
         $this->escaper = $escaper;
         parent::__construct($context, $uiComponentFactory, $components, $data);
@@ -87,5 +85,4 @@ class Actions extends Column
         }
         return $dataSource;
     }
-
 }

@@ -20,6 +20,7 @@ class AddProductsToFeedback
     public function __construct(
         FeedbackRepositoryInterface $feedbackRepository,
         ImageHelper $imageHelper,
+        \Training\Feedback\Api\Data\FeedbackExtensionInterfaceFactory $extensionAttributesFactory,
         Status $status,
         AttributeSetRepositoryInterface $attributeSetRepository
     ) {

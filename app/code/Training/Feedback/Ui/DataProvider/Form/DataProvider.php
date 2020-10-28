@@ -46,6 +46,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             return $this->loadedData;
         }
         $data = $this->dataPersistor->get('training_feedback');
+
         if (!empty($data)) {
             $feedback = $this->collection->getNewEmptyItem();
             $feedback->setData($data);
@@ -53,6 +54,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $this->dataPersistor->clear('training_feedback');
             return $this->loadedData;
         }
+
         $items = $this->collection->getItems();
         /** @var \Training\Feedback\Model\Feedback $feedback */
         foreach ($items as $feedback) {
