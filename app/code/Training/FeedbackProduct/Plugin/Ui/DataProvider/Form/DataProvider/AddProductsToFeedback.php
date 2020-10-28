@@ -16,17 +16,22 @@ class AddProductsToFeedback
     private $imageHelper;
     private $status;
     private $attributeSetRepository;
+    /**
+     * @var \Training\FeedbackProduct\Model\FeedbackProductsFactory
+     */
+    private $productLoader;
 
     public function __construct(
         FeedbackRepositoryInterface $feedbackRepository,
         ImageHelper $imageHelper,
-        \Training\Feedback\Api\Data\FeedbackExtensionInterfaceFactory $extensionAttributesFactory,
+        \Training\FeedbackProduct\Model\FeedbackProductsFactory $productLoader,
         Status $status,
         AttributeSetRepositoryInterface $attributeSetRepository
     ) {
         $this->feedbackRepository = $feedbackRepository;
         $this->imageHelper = $imageHelper;
         $this->status = $status;
+        $this->productLoader = $productLoader;
         $this->attributeSetRepository = $attributeSetRepository;
     }
 
@@ -42,6 +47,10 @@ class AddProductsToFeedback
                     } catch (NoSuchEntityException $e) {
                         continue;
                     }
+                    $productFactory = $this->productLoader->create();
+
+                    $test = $productFactory->loadProductRelations($feedback);
+
                     $products = $feedback->getExtensionAttributes()->getProducts();
                     if (!$products) {
                         $result[$index]['assigned_feedback_products'] = [];
