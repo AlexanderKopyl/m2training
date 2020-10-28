@@ -15,6 +15,10 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
     private $feedbackRepository;
     private $feedbackFactory;
     private $feedbackDataLoader;
+    /**
+     * @var \Training\FeedbackProduct\Model\FeedbackProductsFactory
+     */
+    private $productToFeedbackFactory;
 
     /**
      * @param Context $context
@@ -26,6 +30,7 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
     public function __construct(
         Context $context,
         DataPersistorInterface $dataPersistor,
+        \Training\FeedbackProduct\Model\FeedbackProductsFactory $productToFeedbackFactory,
         \Training\Feedback\Api\FeedbackRepositoryInterface $feedbackRepository,
         \Training\Feedback\Model\FeedbackFactory $feedbackFactory,
         \Training\FeedbackProduct\Model\FeedbackDataLoader $feedbackDataLoader
@@ -33,6 +38,7 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
         $this->dataPersistor = $dataPersistor;
         $this->feedbackRepository = $feedbackRepository;
         $this->feedbackFactory = $feedbackFactory;
+        $this->productToFeedbackFactory = $productToFeedbackFactory;
         $this->feedbackDataLoader = $feedbackDataLoader;
         parent::__construct($context);
     }
@@ -67,6 +73,8 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
             $model->setData($data);
             try {
                 $this->setProductsToFeedback($model, $data);
+                $productFactory = $this->productToFeedbackFactory->create();
+                $productFactory->saveProductRelations($model);
                 $this->feedbackRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved the feedback.'));
                 $this->dataPersistor->clear('training_feedback');
