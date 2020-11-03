@@ -74,10 +74,11 @@ class AddCustomerAttribute implements DataPatchInterface
                 'system' => 0, // <-- important
                 'position' => 500,
                 'default' => '1',
-                'is_used_in_grid' => 0,
-                'is_visible_in_grid' => 0,
-                'is_filterable_in_grid' => 0,
-                'is_searchable_in_grid' => 0,
+                'visible' => true,
+                'is_used_in_grid' => 1,
+                'is_visible_in_grid' => 1,
+                'is_filterable_in_grid' => 1,
+                'is_searchable_in_grid' => 1,
                 'group' => 'General' // <-- must be if 'user_defined' exists
             ]
         );

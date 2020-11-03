@@ -51,9 +51,14 @@ class CreateCustomerAttribute implements DataPatchInterface, PatchRevertableInte
             'system' => false,
             'user_defined' => true,
             'group' => 'General',
+            'visible' => true,
             'unique' => true,
             'sort_order' => 300,
             'position' => 300,
+            'is_used_in_grid' => 1,
+            'is_visible_in_grid' => 1,
+            'is_filterable_in_grid' => 1,
+            'is_searchable_in_grid' => 1
         ]);
         $attributeId = $customerSetup->getAttributeId(
             Customer::ENTITY,
