@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Training\CustomerPersonalSite\Setup\Patch\Data;
 
-use Magento\Customer\Model\Customer;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
+use Magento\Customer\Model\Customer;
 
 class CreateCustomerAttribute implements DataPatchInterface, PatchRevertableInterface
 {

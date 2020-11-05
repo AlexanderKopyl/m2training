@@ -290,6 +290,7 @@ return [
         'Amazon_Login' => 1,
         'Amazon_Payment' => 1,
         'Developer_Customer' => 1,
+        'Developer_Featured' => 1,
         'Developer_Logger' => 1,
         'Developer_ManyStore' => 1,
         'Dotdigitalgroup_Email' => 1,
