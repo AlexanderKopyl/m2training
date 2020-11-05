@@ -27,7 +27,6 @@ define([
                 dataType: 'json'
             }).done(function (data) {
                 data = JSON.parse(data);
-                debugger
                 if (data.name && data.message) {
                     self.reviewerName(data.name);
                     self.reviewerMessage(data.message);
