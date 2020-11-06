@@ -1,6 +1,41 @@
-<?php  $viewModel = $block->getData('view_model');?>
-<div>
-    <div class="toolbar">
-        <?= $viewModel->getActionUrl() ?>
-    </div>
+<?php $viewModel = $block->getData('view_model'); ?>
+<div class="featured">
+    <ul>
+        <?php foreach ($viewModel->getProductsFeatured() as $key => $_items): ?>
+            <li>
+                <div id="category-item-info_<?= /* @noEscape */
+                $_items['category_info']->getId() ?>">
+                    <a href="<?= $_items['category_info']->getUrl() ?>">
+                        <?= $_items['category_info']->getName() ?>
+                    </a>
+                </div>
+                <ul>
+                    <?php foreach ($_items['products'] as $_product): ?>
+                        <li>
+                            <div id="product-item-info_<?= /* @noEscape */
+                            $_product->getId() ?>">
+
+                                <a href="<?= $_product->getProductUrl() ?>">
+                                </a>
+                                <div>
+                                    <strong>
+                                        <a href="<?= $_product->getProductUrl() ?>">
+                                            <?= $_product->getName() ?>
+                                        </a>
+                                    </strong>
+
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 </div>
+
+<style>
+    .footer>.featured ul {
+        padding-inline-start: 40px;
+    }
+</style>
