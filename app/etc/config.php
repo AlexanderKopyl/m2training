@@ -291,6 +291,7 @@ return [
         'Amazon_Payment' => 1,
         'Developer_Customer' => 1,
         'Developer_Featured' => 1,
+        'Developer_FreeShipping' => 1,
         'Developer_Logger' => 1,
         'Developer_ManyStore' => 1,
         'Dotdigitalgroup_Email' => 1,
