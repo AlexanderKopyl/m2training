@@ -1,0 +1,6 @@
+<?php $viewModel = $block->getData('view_model'); ?>
+<?php if ($viewModel->getProductFastShipping()) : ?>
+<div class="product-brand">
+    <p><?= __('Fast Shipping')?></p>
+</div>
+<?php endif; ?>

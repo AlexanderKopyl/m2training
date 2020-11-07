@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Developer\FreeShipping\Setup\Patch\Data;
+namespace Developer\FastShipping\Setup\Patch\Data;
 
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Setup\CategorySetup;

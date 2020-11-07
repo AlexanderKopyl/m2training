@@ -10,7 +10,7 @@
                             <item name="children" xsi:type="array">
                                 <item name="item.renderer" xsi:type="array">
                                     <item name="config" xsi:type="array">
-                                        <item name="template" xsi:type="string">Developer_FreeShipping/minicart/item/default</item>
+                                        <item name="template" xsi:type="string">Developer_FastShipping/minicart/item/default</item>
                                     </item>
                                 </item>
                             </item>

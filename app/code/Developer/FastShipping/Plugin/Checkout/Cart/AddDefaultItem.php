@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Developer\FreeShipping\Plugin\Checkout\Cart;
+namespace Developer\FastShipping\Plugin\Checkout\Cart;
 
 use Magento\Quote\Model\Quote\Item;
 
