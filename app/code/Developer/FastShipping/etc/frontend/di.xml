@@ -5,4 +5,7 @@
     <type name="Magento\Checkout\CustomerData\DefaultItem">
         <plugin name="AddAttPlug" type="Developer\FastShipping\Plugin\Checkout\Cart\AddDefaultItem" disabled="false" sortOrder="10"/>
     </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="checkout-summary-product-attribute" type="Developer\FastShipping\Plugin\Checkout\Model\DefaultConfigProvider" />
+    </type>
 </config>
