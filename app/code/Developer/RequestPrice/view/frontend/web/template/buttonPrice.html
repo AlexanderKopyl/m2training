@@ -1,0 +1,29 @@
+<div class="price-box" >
+    <div class="action">
+        <button type="button"  data-bind="i18n: 'Request Price', click: buttonPrice" id="request_price" class="action primary"></button>
+    </div>
+    <div class="callfor-popup" style="display: none">
+        <div class="field name required">
+            <label for="field_name" class="label"><span data-bind="i18n: 'Name'"></span></label>
+            <div class="control">
+                <input type="text" name="name" id="field_name">
+            </div>
+        </div>
+        <div class="field email required">
+            <label for="field_email" class="label"><span data-bind="i18n: 'Email'"></span></label>
+            <div class="control">
+                <input type="email" name="email" id="field_email" title="">
+            </div>
+        </div>
+        <input type="hidden" name="product_id" data-bind="attr : {value: product_id}">
+        <div class="field textarea">
+            <label for="message" class="label"><span data-bind="i18n: 'Message'"></span></label>
+            <div class="control">
+                <textarea rows="3" cols="5" id="message" name="message"></textarea>
+                <div class="note" data-bind="i18n: 'Please enter your message here'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

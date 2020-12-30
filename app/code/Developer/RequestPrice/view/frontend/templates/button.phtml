@@ -1,0 +1,22 @@
+<?php $viewModel = $block->getData('view_model'); ?>
+<div data-bind="scope: 'buttonPrice'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "buttonPrice": {
+                    "component": "Developer_RequestPrice/js/buttonPrice",
+                    "config": {
+                        "template": "Developer_RequestPrice/buttonPrice",
+                        "url": "<?= $viewModel->getActionUrl(); ?>",
+                        "product_id": <?= $viewModel->getCurrentProductId(); ?>
+                    }
+                }
+            }
+        }
+    }
+}
+</script>

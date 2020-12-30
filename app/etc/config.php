@@ -294,6 +294,7 @@ return [
         'Developer_Featured' => 1,
         'Developer_Logger' => 1,
         'Developer_ManyStore' => 1,
+        'Developer_RequestPrice' => 1,
         'Developer_WishListButton' => 1,
         'Dotdigitalgroup_Email' => 1,
         'Dotdigitalgroup_Chat' => 1,
