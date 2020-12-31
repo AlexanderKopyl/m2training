@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Developer_RequestPrice::request" title="Price Requests" translate="title" module="Developer_RequestPrice"
+             sortOrder="100" parent="Magento_Customer::customer" action="developer_requestPrice/index/index"
+             resource="Developer_RequestPrice::request"/>
+    </menu>
+</config>

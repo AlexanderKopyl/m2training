@@ -3,8 +3,8 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider"
-                  xsi:type="string">training_feedback_listing.training_feedback_listing_data_source
+            <item name="provider" xsi:type="string">
+                developer_requestprice_listing.developer_requestprice_listing_data_source
             </item>
         </item>
     </argument>
@@ -13,27 +13,27 @@
             <button name="add">
                 <url path="*/*/new"/>
                 <class>primary</class>
-                <label translate="true">Add New Feedback</label>
+                <label translate="true">Add New Request</label>
             </button>
         </buttons>
-        <spinner>training_feedback_columns</spinner>
+        <spinner>developer_requestprice_columns</spinner>
         <deps>
-            <dep>training_feedback_listing.training_feedback_listing_data_source</dep>
+            <dep>developer_requestprice_listing.developer_requestprice_listing_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="training_feedback_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="developer_requestprice_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
-                <param name="indexField" xsi:type="string">feedback_id</param>
+                <param name="indexField" xsi:type="string">request_price_id</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Training_Feedback::feedback</aclResource>
-        <dataProvider class="Training\Feedback\Ui\DataProvider\Listing\DataProvider"
-                      name="training_feedback_listing_data_source">
+        <aclResource>developer_requestprice::request</aclResource>
+        <dataProvider class="Developer\RequestPrice\Ui\DataProvider\Listing\DataProvider"
+                      name="developer_requestprice_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
-                <primaryFieldName>feedback_id</primaryFieldName>
+                <primaryFieldName>request_price_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -61,27 +61,23 @@
         </filters>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="training_feedback_columns">
+    <columns name="developer_requestprice_columns">
         <settings>
             <editorConfig>
                 <param name="clientConfig" xsi:type="array">
                     <item name="saveUrl" xsi:type="url" path="cms/block/inlineEdit"/>
                     <item name="validateBeforeSave" xsi:type="boolean">false</item>
                 </param>
-                <param name="indexField" xsi:type="string">feedback_id</param>
+                <param name="indexField" xsi:type="string">request_price_id</param>
                 <param name="enabled" xsi:type="boolean">true</param>
-                <param name="selectProvider"
-
-                       xsi:type="string">
-                    training_feedback_listing.training_feedback_listing.training_feedback_columns.ids
+                <param name="selectProvider" xsi:type="string">
+                    developer_requestprice_listing.developer_requestprice_listing.developer_requestprice_columns.ids
                 </param>
             </editorConfig>
             <childDefaults>
                 <param name="fieldAction" xsi:type="array">
-                    <item name="provider"
-
-                          xsi:type="string">
-                        training_feedback_listing.training_feedback_listing.training_feedback_columns_editor
+                    <item name="provider" xsi:type="string">
+                        developer_requestprice_listing.developer_requestprice_listing.developer_requestprice_columns_editor
                     </item>
 
                     <item name="target" xsi:type="string">startEdit</item>
@@ -94,17 +90,17 @@
         </settings>
         <selectionsColumn name="ids">
             <settings>
-                <indexField>feedback_id</indexField>
+                <indexField>request_price_id</indexField>
             </settings>
         </selectionsColumn>
-        <column name="feedback_id">
+        <column name="request_price_id">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
                 <sorting>asc</sorting>
             </settings>
         </column>
-        <column name="author_name">
+        <column name="name">
             <settings>
                 <filter>text</filter>
                 <editor>
@@ -113,10 +109,10 @@
                     </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Author Name</label>
+                <label translate="true">User Name</label>
             </settings>
         </column>
-        <column name="author_email">
+        <column name="email">
             <settings>
                 <filter>text</filter>
                 <editor>
@@ -126,12 +122,12 @@
                     </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Author Email</label>
+                <label translate="true">User Email</label>
             </settings>
         </column>
-        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
             <settings>
-                <options class="Training\Feedback\Model\Source\IsActive"/>
+                <options class="Developer\RequestPrice\Model\Source\Status"/>
                 <filter>select</filter>
                 <editor>
                     <editorType>select</editorType>
@@ -156,9 +152,9 @@
                 <label translate="true">Modified</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Training\Feedback\Ui\Component\Listing\Column\Actions">
+        <actionsColumn name="actions" class="Developer\RequestPrice\Ui\Component\Listing\Column\Actions">
             <settings>
-                <indexField>feedback_id</indexField>
+                <indexField>request_price_id</indexField>
             </settings>
         </actionsColumn>
     </columns>
