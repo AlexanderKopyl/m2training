@@ -71,7 +71,16 @@ define([
                 dataType: 'json'
             }).done(function (data) {
                 // data = JSON.parse(data);
-                console.log(data);
+                if(data.error){
+
+                    for (var error in data.error) {
+                        $('.error_'+error).html(data.error[error]);
+                    }
+                }
+                if(data.success){
+                    $('.callfor-popup').parent().parent().find('footer').html(' ');
+                    $('.callfor-popup').html('<div class="success"><span>'+data.success + '</span></div>');
+                }
             }).error(function (jqXHR, exception) {
                 console.log(jqXHR);
             })

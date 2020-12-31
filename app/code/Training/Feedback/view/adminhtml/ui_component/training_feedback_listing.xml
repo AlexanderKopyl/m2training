@@ -131,7 +131,7 @@
         </column>
         <column name="is_active" component="Magento_Ui/js/grid/columns/select">
             <settings>
-                <options class="Training\Feedback\Model\Source\IsActive"/>
+                <options class="Training\Feedback\Model\Source\Status"/>
                 <filter>select</filter>
                 <editor>
                     <editorType>select</editorType>

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Developer\RequestPrice\Controller\Price;
 
+use Developer\RequestPrice\Model\Request;
+
 class Save implements \Magento\Framework\App\Action\HttpPostActionInterface
 {
     /**
@@ -15,13 +17,29 @@ class Save implements \Magento\Framework\App\Action\HttpPostActionInterface
      */
     private $resultJsonFactory;
 
+    /**
+     * @var
+     */
     private $error;
 
+    /**
+     * @var \Developer\RequestPrice\Model\RequestFactory
+     */
+    private $requestPriceFactory;
+    /**
+     * @var \Developer\RequestPrice\Model\ResourceModel\Request
+     */
+    private $requestPriceResource;
+
     public function __construct(
+        \Developer\RequestPrice\Model\RequestFactory $requestPriceFactory,
+        \Developer\RequestPrice\Model\ResourceModel\Request $requestPriceResource,
         \Magento\Framework\App\RequestInterface $request,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
     ) {
         $this->_request = $request;
+        $this->requestPriceFactory = $requestPriceFactory;
+        $this->requestPriceResource = $requestPriceResource;
         $this->resultJsonFactory = $resultJsonFactory;
     }
 
@@ -29,15 +47,15 @@ class Save implements \Magento\Framework\App\Action\HttpPostActionInterface
     {
         $resultJson = $this->resultJsonFactory->create();
         $json = [];
-        $product_id = $this->_request->getPost('product_id');
 
         if ($post = $this->_request->getPostValue()) {
 
             $this->validatePost($post);
 
             if (!$this->error) {
-                //TO DO
-                //save data
+                $requestPrice = $this->requestPriceFactory->create();
+                $requestPrice->setData($post);
+                $this->requestPriceResource->save($requestPrice);
                 $json['success'] = __('Thank you for your Request Price, wait for email from Administrator.');
             } else {
                 $json['error'] = $this->error;

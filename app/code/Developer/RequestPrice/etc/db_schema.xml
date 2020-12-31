@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="request_price" resource="default" engine="innodb" comment="Request Price Table">
+        <column xsi:type="int" name="request_price_id" padding="5" nullable="false" identity="true"
+                comment="Request ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"
+                comment="Request User Name"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255"
+                comment="Request User Email"/>
+        <column xsi:type="text" name="message" nullable="true"  comment="Request User Comment"/>
+        <column xsi:type="int" name="product_sku" padding="10" nullable="false" unsigned="true"
+                comment="Product SKU"/>
+        <column xsi:type="timestamp" name="creation_time" on_update="false" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Request Creation Time"/>
+        <column xsi:type="timestamp" name="update_time" on_update="true" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Request Modification Time"/>
+        <column xsi:type="tinyint" name="status" padding="5" nullable="false" default="1" comment="Request Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="request_price_id"/>
+        </constraint>
+        <index referenceId="REQUEST_PRICE_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+</schema>

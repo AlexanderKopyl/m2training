@@ -7,15 +7,17 @@
             <label for="field_name" class="label"><span data-bind="i18n: 'Name'"></span></label>
             <div class="control">
                 <input type="text" name="name" id="field_name">
+                <div class="error_name"></div>
             </div>
         </div>
         <div class="field email required">
             <label for="field_email" class="label"><span data-bind="i18n: 'Email'"></span></label>
             <div class="control">
-                <input type="email" name="email" id="field_email" title="">
+                <input type="email" name="email" id="field_email" title="" data-validate="{required:true, 'validate-email':true}">
+                <div class="error_email"></div>
             </div>
         </div>
-        <input type="hidden" name="product_id" data-bind="attr : {value: product_id}">
+        <input type="hidden" name="product_sku" data-bind="attr : {value: product_sku}">
         <div class="field textarea">
             <label for="message" class="label"><span data-bind="i18n: 'Message'"></span></label>
             <div class="control">

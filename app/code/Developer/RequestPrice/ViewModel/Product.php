@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Developer\RequestPrice\ViewModel;
-
 
 class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -48,10 +46,15 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
         return $this->_escaper->escapeJs($currentProduct->getId());
     }
 
+    public function getCurrentProductSKU()
+    {
+        $currentProduct = $this->getCurrentProduct();
+        return $this->_escaper->escapeJs($currentProduct->getSku());
+    }
+
     public function getActionUrl()
     {
         return $this->urlBuilder->getUrl('requestprice/price/save');
         // it can be found in parent too
     }
 }
-
