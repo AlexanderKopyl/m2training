@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace Developer\RequestPrice\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Exception\LocalizedException;
 
-class Delete extends \Magento\Backend\App\Action implements HttpPostActionInterface
+class Delete extends \Magento\Backend\App\Action implements HttpPostActionInterface, HttpGetActionInterface
 {
     const ADMIN_RESOURCE = 'Developer_RequestPrice::request_delete';
 
