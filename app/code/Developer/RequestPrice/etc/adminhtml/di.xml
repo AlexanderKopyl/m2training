@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Developer\RequestPrice\Api\Data\RequestInterface" type="Developer\RequestPrice\Model\Request"/>
+    <preference for="Developer\RequestPrice\Api\Data\RequestSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Developer\RequestPrice\Api\RequestRepositoryInterface" type="Developer\RequestPrice\Model\RequestRepository"/>
+</config>

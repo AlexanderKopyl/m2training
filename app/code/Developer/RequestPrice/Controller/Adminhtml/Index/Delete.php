@@ -9,38 +9,38 @@ use Magento\Framework\Exception\LocalizedException;
 
 class Delete extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
-    const ADMIN_RESOURCE = 'Training_Feedback::feedback_delete';
+    const ADMIN_RESOURCE = 'Developer_RequestPrice::request_delete';
 
-    private $feedbackRepository;
+    private $requestRepository;
     /**
-     * @param \Training\Feedback\Controller\Adminhtml\Index\Context $context
-     * @param \Training\Feedback\Api\FeedbackRepositoryInterface $feedbackRepository
+     * @param \Developer\RequestPrice\Controller\Adminhtml\Index\Context $context
+     * @param \Dveloper\RequestPrice\Api\RequestRepositoryInterface $feedbackRepository
      */
     public function __construct(
         Context $context,
-        \Training\Feedback\Api\FeedbackRepositoryInterface $feedbackRepository
+        \Developer\RequestPrice\Api\RequestRepositoryInterface $requestRepository
     ) {
-        $this->feedbackRepository = $feedbackRepository;
+        $this->requestRepository = $requestRepository;
         parent::__construct($context);
     }
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
-        $id = $this->getRequest()->getParam('feedback_id');
+        $id = $this->getRequest()->getParam('request_price_id');
         if ($id) {
             try {
-                $this->feedbackRepository->deleteById($id);
-                $this->messageManager->addSuccessMessage(__('You deleted the feedback.'));
+                $this->requestRepository->deleteById($id);
+                $this->messageManager->addSuccessMessage(__('You deleted the request.'));
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
-                return $resultRedirect->setPath('*/*/edit', ['feedback_id' => $id]);
+                return $resultRedirect->setPath('*/*/edit', ['request_price_id' => $id]);
             } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage(__('We can\'t delete the feedback.'));
-                return $resultRedirect->setPath('*/*/edit', ['feedback_id' => $id]);
+                $this->messageManager->addErrorMessage(__('We can\'t delete the request.'));
+                return $resultRedirect->setPath('*/*/edit', ['request_price_id' => $id]);
             }
         }
-        $this->messageManager->addErrorMessage(__('We can\'t find a feedback to delete.'));
+        $this->messageManager->addErrorMessage(__('We can\'t find a request to delete.'));
         return $resultRedirect->setPath('*/*/');
     }
 }

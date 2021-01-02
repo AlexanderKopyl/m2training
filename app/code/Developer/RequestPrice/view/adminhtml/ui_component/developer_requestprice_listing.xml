@@ -9,13 +9,13 @@
         </item>
     </argument>
     <settings>
-        <buttons>
-            <button name="add">
-                <url path="*/*/new"/>
-                <class>primary</class>
-                <label translate="true">Add New Request</label>
-            </button>
-        </buttons>
+<!--        <buttons>-->
+<!--            <button name="add">-->
+<!--                <url path="*/*/new"/>-->
+<!--                <class>primary</class>-->
+<!--                <label translate="true">Add New Request</label>-->
+<!--            </button>-->
+<!--        </buttons>-->
         <spinner>developer_requestprice_columns</spinner>
         <deps>
             <dep>developer_requestprice_listing.developer_requestprice_listing_data_source</dep>
@@ -65,7 +65,7 @@
         <settings>
             <editorConfig>
                 <param name="clientConfig" xsi:type="array">
-                    <item name="saveUrl" xsi:type="url" path="cms/block/inlineEdit"/>
+                   <item name="saveUrl" xsi:type="url" path="cms/block/inlineEdit"/>
                     <item name="validateBeforeSave" xsi:type="boolean">false</item>
                 </param>
                 <param name="indexField" xsi:type="string">request_price_id</param>

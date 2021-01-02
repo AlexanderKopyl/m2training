@@ -10,25 +10,25 @@ use Magento\Framework\Exception\LocalizedException;
 
 class Save extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
-    const ADMIN_RESOURCE = 'Training_Feedback::feedback_save';
+    const ADMIN_RESOURCE = 'Developer_RequestPrice::request_save';
     private $dataPersistor;
-    private $feedbackRepository;
-    private $feedbackFactory;
+    private $requestRepository;
+    private $requestFactory;
     /**
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
-     * @param \Training\Feedback\Api\FeedbackRepositoryInterface $feedbackRepository
-     * @param \Training\Feedback\Model\FeedbackFactory $feedbackFactory
+     * @param \Developer\RequestPrice\Api\RequestRepositoryInterface $requestRepository
+     * @param \Developer\RequestPrice\Model\RequestFactory  $requestFactory
      */
     public function __construct(
         Context $context,
         DataPersistorInterface $dataPersistor,
-        \Training\Feedback\Api\FeedbackRepositoryInterface $feedbackRepository,
-        \Training\Feedback\Model\FeedbackFactory $feedbackFactory
+        \Developer\RequestPrice\Api\RequestRepositoryInterface $requestRepository,
+        \Developer\RequestPrice\Model\RequestFactory $requestFactory
     ) {
         $this->dataPersistor = $dataPersistor;
-        $this->feedbackRepository = $feedbackRepository;
-        $this->feedbackFactory = $feedbackFactory;
+        $this->requestRepository = $requestRepository;
+        $this->requestFactory = $requestFactory;
         parent::__construct($context);
     }
     public function execute()
@@ -37,38 +37,38 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
         if ($data) {
-            if (isset($data['is_active']) && $data['is_active'] === 'true') {
-                $data['is_active'] = \Training\Feedback\Model\Feedback::STATUS_ACTIVE;
+//            if (isset($data['status']) && $data['sta'] === 'true') {
+//                $data['is_active'] = \Training\Feedback\Model\Feedback::STATUS_ACTIVE;
+//            }
+            if (empty($data['request_price_id'])) {
+                $data['request_price_id'] = null;
             }
-            if (empty($data['feedback_id'])) {
-                $data['feedback_id'] = null;
-            }
-            $model = $this->feedbackFactory->create();
-            $id = $this->getRequest()->getParam('feedback_id');
+            $model = $this->requestFactory->create();
+            $id = $this->getRequest()->getParam('request_price_id');
             if ($id) {
                 try {
-                    $model = $this->feedbackRepository->getById($id);
+                    $model = $this->requestRepository->getById($id);
                 } catch (LocalizedException $e) {
-                    $this->messageManager->addErrorMessage(__('This feedback no longer exists.'));
+                    $this->messageManager->addErrorMessage(__('This request no longer exists.'));
                     return $resultRedirect->setPath('*/*/');
                 }
             }
             $model->setData($data);
             try {
-                $this->feedbackRepository->save($model);
-                $this->messageManager->addSuccessMessage(__('You saved the feedback.'));
-                $this->dataPersistor->clear('training_feedback');
+                $this->requestRepository->save($model);
+                $this->messageManager->addSuccessMessage(__('You saved the request.'));
+                $this->dataPersistor->clear('request_price');
                 return $this->processRedirect($model, $data, $resultRedirect);
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager
-                    ->addExceptionMessage($e, __('Something went wrong while saving the feedback.'));
+                    ->addExceptionMessage($e, __('Something went wrong while saving the request.'));
             }
-            $this->dataPersistor->set('training_feedback', $data);
+            $this->dataPersistor->set('request_price', $data);
             return $resultRedirect->setPath(
                 '*/*/edit',
-                ['feedback_id' => $this->getRequest()->getParam('feedback_id')]
+                ['request_price_id' => $this->getRequest()->getParam('request_price_id')]
             );
         }
         return $resultRedirect->setPath('*/*/');
@@ -78,7 +78,7 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
     {
         $redirect = $data['back'] ?? 'close';
         if ($redirect === 'continue') {
-            $resultRedirect->setPath('*/*/edit', ['feedback_id' => $model->getId()]);
+            $resultRedirect->setPath('*/*/edit', ['request_price_id' => $model->getId()]);
         } elseif ($redirect === 'close') {
             $resultRedirect->setPath('*/*/');
         }

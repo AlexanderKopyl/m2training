@@ -76,7 +76,7 @@ class Actions extends Column
                             'label' => __('Delete'),
                             'confirm' => [
                                 'title' => __('Delete feedback'),
-                                'message' => __('Are you sure you want to delete a feedback record?')
+                                'message' => __('Are you sure you want to delete a request record?')
                             ]
                         ]
                     ];
