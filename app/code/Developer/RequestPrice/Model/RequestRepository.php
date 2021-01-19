@@ -19,8 +19,17 @@ use Magento\Framework\Exception\NoSuchEntityException;
 class RequestRepository implements RequestRepositoryInterface
 {
     protected $objectFactory;
+    /**
+     * @var ObjectResourceModel
+     */
     protected $objectResourceModel;
+    /**
+     * @var CollectionFactory
+     */
     protected $collectionFactory;
+    /**
+     * @var SearchResultsInterfaceFactory
+     */
     protected $searchResultsFactory;
 
     /**

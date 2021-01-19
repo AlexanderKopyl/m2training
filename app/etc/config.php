@@ -289,6 +289,7 @@ return [
         'Amazon_Core' => 1,
         'Amazon_Login' => 1,
         'Amazon_Payment' => 1,
+        'Developer_Blog' => 1,
         'Developer_Customer' => 1,
         'Developer_FastShipping' => 1,
         'Developer_Featured' => 1,

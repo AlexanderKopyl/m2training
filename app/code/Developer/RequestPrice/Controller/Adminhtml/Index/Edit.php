@@ -27,7 +27,7 @@ class Edit extends \Magento\Backend\App\Action implements HttpGetActionInterface
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Developer\RequestPrice\Api\RequestRepositoryInterface $feedbackRepository
+     * @param \Developer\RequestPrice\Api\RequestRepositoryInterface $requestRepository
      * @param \Developer\RequestPrice\Model\RequestFactory $requestFactory
      */
     public function __construct(

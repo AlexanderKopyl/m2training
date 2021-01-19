@@ -7,13 +7,13 @@ use Magento\Framework\Api\SearchResultsInterface;
 interface RequestSearchResultsInterface extends SearchResultsInterface
 {
     /**
-     * Get Feedback list.
+     * Get Request list.
      *
      * @return \Developer\RequestPrice\Api\Data\RequestInterface[]
      */
     public function getItems();
     /**
-     * Set Feedback list.
+     * Set Request list.
      *
      * @param \Developer\RequestPrice\Api\Data\RequestInterface[] $items
      * @return $this

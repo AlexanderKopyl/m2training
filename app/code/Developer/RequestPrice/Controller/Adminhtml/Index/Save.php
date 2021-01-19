@@ -37,9 +37,6 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
         if ($data) {
-//            if (isset($data['status']) && $data['sta'] === 'true') {
-//                $data['is_active'] = \Training\Feedback\Model\Feedback::STATUS_ACTIVE;
-//            }
             if (empty($data['request_price_id'])) {
                 $data['request_price_id'] = null;
             }

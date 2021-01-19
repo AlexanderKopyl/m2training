@@ -15,7 +15,7 @@ class Delete extends \Magento\Backend\App\Action implements HttpPostActionInterf
     private $requestRepository;
     /**
      * @param \Developer\RequestPrice\Controller\Adminhtml\Index\Context $context
-     * @param \Dveloper\RequestPrice\Api\RequestRepositoryInterface $feedbackRepository
+     * @param \Dveloper\RequestPrice\Api\RequestRepositoryInterface $requestRepository
      */
     public function __construct(
         Context $context,

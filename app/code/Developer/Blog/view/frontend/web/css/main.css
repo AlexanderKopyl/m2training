@@ -1,0 +1,31 @@
+.post-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.post-container .post-image {
+    height: 200px;
+    background: gray;
+}
+
+.post-container .post-time {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.post-container .post-time span {
+    opacity: 0.5;
+}
+
+.post-container .post-author-name {
+    padding: 10px;
+    font-size: 11px;
+    font-weight: 200;
+}
+
+.post-container a.post-title {
+    color: black;
+    font-size: 25px;
+    padding: 10px;
+    text-decoration: none;
+}

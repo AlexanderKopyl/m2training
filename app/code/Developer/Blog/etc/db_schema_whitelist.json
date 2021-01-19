@@ -1,0 +1,20 @@
+{
+    "blog_posts": {
+        "column": {
+            "post_id": true,
+            "author_name": true,
+            "description": true,
+            "creation_time": true,
+            "update_time": true,
+            "is_active": true,
+            "thumb": true,
+            "short_description": true
+        },
+        "index": {
+            "BLOG_POSTS_IS_ACTIVE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
