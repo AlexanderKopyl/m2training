@@ -11,6 +11,6 @@ class Post extends AbstractDb
 
     protected function _construct()
     {
-        $this->_init('blog_posts', 'post_id');
+        $this->_init('blog_post', 'post_id');
     }
 }

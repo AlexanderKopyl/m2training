@@ -7,7 +7,7 @@
                       sortOrder="15">
                 <resource id="Developer_Blog::post_save" title="Save Post"
                           translate="title" sortOrder="10"/>
-                <resource id="Developer_Blog::post__delete" title="Delete Post"
+                <resource id="Developer_Blog::post_delete" title="Delete Post"
                           translate="title" sortOrder="20"/>
             </resource>
         </resources>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Training\Feedback\Ui\Component\Listing\Column;
+namespace Developer\Blog\Ui\Component\Listing\Column;
 
 use Magento\Framework\Escaper;
 use Magento\Framework\UrlInterface;
@@ -61,7 +61,7 @@ class Actions extends Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
-                                    'feedback_id' => $item['post_id']
+                                    'post_id' => $item['post_id']
                                 ]
                             ),
                             'label' => __('Edit')
@@ -70,7 +70,7 @@ class Actions extends Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
-                                    'feedback_id' => $item['post_id']
+                                    'post_id' => $item['post_id']
                                 ]
                             ),
                             'label' => __('Delete'),

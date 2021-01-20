@@ -18,6 +18,6 @@ class Blog implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
     public function getUrl($post_id)
     {
-        return $this->urlBuilder->getUrl('blog/post/' . $post_id);
+        return $this->urlBuilder->getUrl('blog/post/view/post_id/' . $post_id);
     }
 }

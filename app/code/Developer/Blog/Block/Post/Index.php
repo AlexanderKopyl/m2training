@@ -36,10 +36,10 @@ class Index extends Template
         $collection->setPageSize($pageSize);
         $collection->setCurPage($page);
 
-        $collection->getSelect()->join(
-            ['bpd' => $collection->getTable('blog_posts_description')],
-            "main_table.post_id=bpd.post_id"
-        );
+//        $collection->getSelect()->join(
+//            ['bpd' => $collection->getTable('blog_posts_description')],
+//            "main_table.post_id=bpd.post_id"
+//        );
 
         return $collection;
     }
@@ -54,7 +54,7 @@ class Index extends Template
         if ($this->getCollectionPosts()) {
             $pager = $this->getLayout()->createBlock(
                 'Magento\Theme\Block\Html\Pager',
-                'blog.posts.pager'
+                'blog.post.pager'
             )->setShowAmounts(false)
             ->setAvailableLimit(
                 [4 => 4, 8 => 8, 16 => 16, 32 => 32]

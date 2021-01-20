@@ -2,5 +2,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Developer\Blog\Api\Data\PostInterface" type="Developer\Blog\Model\Post"/>
-    <preference for="Developer\Blog\Api\Data\PostDescriptionInterface" type="Developer\Blog\Model\PostPostDescription"/>
+    <preference for="Developer\Blog\Api\PostRepositoryInterface" type="Developer\Blog\Model\PostRepository"/>
 </config>

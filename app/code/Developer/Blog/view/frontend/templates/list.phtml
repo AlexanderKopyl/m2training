@@ -4,11 +4,11 @@ $viewModel = $block->getData('view_model');
 $collection = $block->getCollectionPosts();
 ?>
 
-<?php if ($collection): ?>
+<?php if ($collection->getItems()): ?>
     <div id="posts-list">
     <?php foreach ($collection as $_post):?>
         <div class="post-container">
-            <a class="post-title" href="/<?= $viewModel->getUrl($_post->getId())?>"><?= $_post->getTitle()?></a>
+            <a class="post-title" href="<?= $viewModel->getUrl($_post->getId())?>"><?= $_post->getTitle()?></a>
             <div class="post-image">
 <!--                <img src="--><?//= $_post['thumb'] ?><!--" alt="--><?//= $_post['title'] ?><!--">-->
             </div>
