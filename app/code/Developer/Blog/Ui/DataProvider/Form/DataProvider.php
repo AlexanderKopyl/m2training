@@ -45,7 +45,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
-        $data = $this->dataPersistor->get('training_feedback');
+        $data = $this->dataPersistor->get('developer_blog');
 
         if (!empty($data)) {
             $post = $this->collection->getNewEmptyItem();
