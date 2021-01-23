@@ -11,8 +11,17 @@ use Magento\Framework\Exception\LocalizedException;
 class Save extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
     const ADMIN_RESOURCE = 'Developer_Blog::post_save';
+    /**
+     * @var DataPersistorInterface
+     */
     private $dataPersistor;
+    /**
+     * @var \Developer\Blog\Api\PostRepositoryInterface
+     */
     private $postRepository;
+    /**
+     * @var \Developer\Blog\Model\PostFactory
+     */
     private $postFactory;
     /**
      * @param Context $context
@@ -36,15 +45,23 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
+        $data = $this->_filterFoodData($data);
+
         if ($data) {
             if (empty($data['post_id'])) {
                 $data['post_id'] = null;
             }
             $model = $this->postFactory->create();
+
+            $this->_eventManager->dispatch(
+                'developer_blog_post_prepare_save',
+                ['post' => $model, 'request' => $this->getRequest()]
+            );
+
             $id = $this->getRequest()->getParam('post_id');
             if ($id) {
                 try {
-                    $model = $this->postFactory->getById($id);
+                    $model = $this->postRepository->getById($id);
                 } catch (LocalizedException $e) {
                     $this->messageManager->addErrorMessage(__('This post no longer exists.'));
                     return $resultRedirect->setPath('*/*/');
@@ -69,6 +86,18 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
             );
         }
         return $resultRedirect->setPath('*/*/');
+    }
+
+    public function _filterFoodData(array $rawData)
+    {
+        //Replace icon with fileuploader field name
+        $data = $rawData;
+        if (isset($data['thumb'][0]['name'])) {
+            $data['thumb'] = $data['thumb'][0]['name'];
+        } else {
+            $data['thumb'] = null;
+        }
+        return $data;
     }
 
     private function processRedirect($model, $data, $resultRedirect)

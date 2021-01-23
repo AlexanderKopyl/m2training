@@ -22,7 +22,7 @@ class Edit extends \Magento\Backend\App\Action implements HttpGetActionInterface
     /**
      * @var \Developer\Blog\Model\PostFactory
      */
-    private $requestFactory;
+    private $postFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -34,11 +34,11 @@ class Edit extends \Magento\Backend\App\Action implements HttpGetActionInterface
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Developer\Blog\Api\PostRepositoryInterface $postRepository,
-        \Developer\Blog\Model\PostFactory $requestFactory
+        \Developer\Blog\Model\PostFactory $postFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->postRepository = $postRepository;
-        $this->requestFactory = $requestFactory;
+        $this->postFactory = $postFactory;
         parent::__construct($context);
     }
 
@@ -50,7 +50,7 @@ class Edit extends \Magento\Backend\App\Action implements HttpGetActionInterface
     public function execute()
     {
         $id = $this->getRequest()->getParam('post_id');
-        $model = $this->requestFactory->create();
+        $model = $this->postFactory->create();
         if ($id) {
             try {
                 $model = $this->postRepository->getById($id);

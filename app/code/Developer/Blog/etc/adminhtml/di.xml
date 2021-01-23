@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Developer\Blog\ImageUploader" type="Developer\Blog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">blog/tmp</argument>
+            <argument name="basePath" xsi:type="string">blog</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Developer\Blog\Controller\Adminhtml\Post\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Developer\Blog\ImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Developer\Blog\Model\PostRepository">
+        <arguments>
+            <argument name="hydrator" xsi:type="object">Magento\Framework\EntityManager\AbstractModelHydrator</argument>
+        </arguments>
+    </type>
+    <preference for="Developer\Blog\Api\Data\PostInterface" type="Developer\Blog\Model\Post"/>
+</config>

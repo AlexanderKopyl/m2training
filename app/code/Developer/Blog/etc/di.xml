@@ -1,6 +1,46 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Developer\Blog\Api\Data\PostInterface" type="Developer\Blog\Model\Post"/>
     <preference for="Developer\Blog\Api\PostRepositoryInterface" type="Developer\Blog\Model\PostRepository"/>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Developer\Blog\Api\Data\PostInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">Developer\Blog\Model\ResourceModel\Post\Relation\Store\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">Developer\Blog\Model\ResourceModel\Post\Relation\Store\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">Developer\Blog\Model\ResourceModel\Post\Relation\Store\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Developer\Blog\Api\Data\PostInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Developer\Blog\Api\Data\PostInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">blog_post</item>
+                    <item name="identifierField" xsi:type="string">post_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Developer\Blog\Api\Data\PostInterface" xsi:type="string">Developer\Blog\Api\PostRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

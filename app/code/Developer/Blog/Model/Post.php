@@ -1,16 +1,32 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Developer\Blog\Model;
 
 use Developer\Blog\Api\Data\PostInterface;
+use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
 
-class Post extends AbstractModel implements PostInterface
+/**
+ * @method Post setStoreId(int $storeId)
+ * @method int getStoreId()
+ *
+ **/
+class Post extends AbstractModel implements PostInterface, IdentityInterface
 {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
+
+    /**
+     * Blog post cache tag
+     */
+    const CACHE_TAG = 'blog_p';
+
+    /**
+     * @var string
+     */
+    protected $_cacheTag = self::CACHE_TAG;
+
     /**
      * @var string
      */
@@ -187,7 +203,6 @@ class Post extends AbstractModel implements PostInterface
         return $this->setData(self::IS_ACTIVE, $isActive);
     }
 
-
     /**
      * @param string $shortDescription
      * @return PostInterface|Post
@@ -258,5 +273,15 @@ class Post extends AbstractModel implements PostInterface
     public function setPostLayout($postLayout)
     {
         return $this->setData(self::POST_LAYOUT, $postLayout);
+    }
+
+    /**
+     * Get identities
+     *
+     * @return array
+     */
+    public function getIdentities()
+    {
+        return [self::CACHE_TAG . '_' . $this->getId()];
     }
 }

@@ -110,6 +110,7 @@
                     <editorType>text</editorType>
                 </editor>
                 <label translate="true">Title</label>
+                <sortable>true</sortable>
             </settings>
         </column>
         <column name="identifier">
@@ -144,6 +145,7 @@
                     </validation>
                 </editor>
                 <label translate="true">Author Name</label>
+                <sorting>desc</sorting>
             </settings>
         </column>
         <column name="is_active" component="Magento_Ui/js/grid/columns/select">
