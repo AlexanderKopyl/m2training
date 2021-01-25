@@ -259,7 +259,7 @@
                 <collapsible>true</collapsible>
                 <label translate="true">Post in Websites</label>
             </settings>
-            <field name="store_id" formElement="multiselect">
+            <field name="storeviews" formElement="multiselect">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="source" xsi:type="string">post</item>

@@ -78,6 +78,16 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
     }
 
     /**
+     * Receive post store ids
+     *
+     * @return int[]
+     */
+    public function getStores()
+    {
+        return $this->hasData('stores') ? $this->getData('stores') : (array)$this->getData('store_id');
+    }
+
+    /**
      * @return string|null
      */
     public function getShortDescription()

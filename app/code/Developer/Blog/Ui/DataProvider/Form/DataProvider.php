@@ -66,13 +66,16 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         /** @var \Developer\Blog\Model\Post $post */
         foreach ($items as $posts) {
             $this->loadedData[$posts->getId()] = $posts->getData();
+//            $dataWithStore = $this->repositoryObject->getById($posts->getId())->getData();
             if ($posts->getThumb()) {
                 $m['thumb'][0]['name'] = $posts->getThumb();
                 $m['thumb'][0]['url'] = $this->getMediaUrl() . $posts->getThumb();
+//                if (isset($dataWithStore['store_id'])) {
+//                    $this->loadedData[$posts->getId()]['store_id'] = $dataWithStore['store_id'];
+//                }
                 $fullData = $this->loadedData;
                 $this->loadedData[$posts->getId()] = array_merge($fullData[$posts->getId()], $m);
             }
-
         }
         return $this->loadedData;
     }
