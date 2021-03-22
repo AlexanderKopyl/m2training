@@ -21,6 +21,7 @@
     <type name="Developer\Blog\Model\PostRepository">
         <arguments>
             <argument name="hydrator" xsi:type="object">Magento\Framework\EntityManager\AbstractModelHydrator</argument>
+            <argument name="identityMap" xsi:type="object">Developer\Blog\Model\Post\IdentityMap</argument>
         </arguments>
     </type>
     <preference for="Developer\Blog\Api\Data\PostInterface" type="Developer\Blog\Model\Post"/>

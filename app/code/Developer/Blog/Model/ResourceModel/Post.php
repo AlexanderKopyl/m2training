@@ -131,14 +131,14 @@ class Post extends AbstractDb
 
     public function load(AbstractModel $object, $value, $field = null)
     {
-        $postId = $this->getPageId($object, $value, $field);
+        $postId = $this->getPostId($object, $value, $field);
         if ($postId) {
             $this->entityManager->load($object, $postId);
         }
         return $this;
     }
 
-    private function getPageId(AbstractModel $object, $value, $field = null)
+    private function getPostId(AbstractModel $object, $value, $field = null)
     {
         $entityMetadata = $this->metadataPool->getMetadata(PostInterface::class);
 
@@ -190,7 +190,127 @@ class Post extends AbstractDb
         $this->entityManager->save($object);
         return $this;
     }
+    /**
+     *  Check whether Post identifier is valid
+     *
+     * @param AbstractModel $object
+     * @return bool
+     */
+    protected function isValidPostIdentifier(AbstractModel $object)
+    {
+        return preg_match('/^[a-z0-9][a-z0-9_\/-]+(\.[a-z0-9_-]+)?$/', $object->getData('identifier'));
+    }
+    /**
+     * Retrieves blog Post title from DB by passed identifier.
+     *
+     * @param string $identifier
+     * @return string|false
+     */
+    public function getBlogPostTitleByIdentifier($identifier)
+    {
+        $stores = [Store::DEFAULT_STORE_ID];
+        if ($this->_store) {
+            $stores[] = (int)$this->getStore()->getId();
+        }
 
+        $select = $this->_getLoadByIdentifierSelect($identifier, $stores);
+        $select->reset(Select::COLUMNS)
+            ->columns('cp.title')
+            ->order('cps.store_id DESC')
+            ->limit(1);
+
+        return $this->getConnection()->fetchOne($select);
+    }
+
+    /**
+     * Retrieves blog Post title from DB by passed id.
+     *
+     * @param string $id
+     * @return string|false
+     */
+    public function getBlogPostTitleById($id)
+    {
+        $connection = $this->getConnection();
+        $entityMetadata = $this->metadataPool->getMetadata(PostInterface::class);
+
+        $select = $connection->select()
+            ->from($this->getMainTable(), 'title')
+            ->where($entityMetadata->getIdentifierField() . ' = :post_id');
+
+        return $connection->fetchOne($select, ['post_id' => (int)$id]);
+    }
+
+    /**
+     * Retrieves blog Post identifier from DB by passed id.
+     *
+     * @param string $id
+     * @return string|false
+     */
+    public function getBlogPostIdentifierById($id)
+    {
+        $connection = $this->getConnection();
+        $entityMetadata = $this->metadataPool->getMetadata(PostInterface::class);
+
+        $select = $connection->select()
+            ->from($this->getMainTable(), 'identifier')
+            ->where($entityMetadata->getIdentifierField() . ' = :post_id');
+
+        return $connection->fetchOne($select, ['post_id' => (int)$id]);
+    }
+
+    /**
+     * Check if Post identifier exist for specific store
+     * return Post id if Post exists
+     *
+     * @param string $identifier
+     * @param int $storeId
+     * @return int
+     */
+    public function checkIdentifier($identifier, $storeId)
+    {
+        $entityMetadata = $this->metadataPool->getMetadata(PostInterface::class);
+
+        $stores = [Store::DEFAULT_STORE_ID, $storeId];
+        $select = $this->_getLoadByIdentifierSelect($identifier, $stores, 1);
+        $select->reset(Select::COLUMNS)
+            ->columns('cp.' . $entityMetadata->getIdentifierField())
+            ->order('cps.store_id DESC')
+            ->limit(1);
+
+        return $this->getConnection()->fetchOne($select);
+    }
+
+    protected function _getLoadByIdentifierSelect($identifier, $store, $isActive = null)
+    {
+        $entityMetadata = $this->metadataPool->getMetadata(PostInterface::class);
+        $linkField = $entityMetadata->getLinkField();
+
+        $select = $this->getConnection()->select()
+            ->from(['cp' => $this->getMainTable()])
+            ->join(
+                ['cps' => $this->getTable('blog_post_store')],
+                'cp.' . $linkField . ' = cps.' . $linkField,
+                []
+            )
+            ->where('cp.identifier = ?', $identifier)
+            ->where('cps.store_id IN (?)', $store);
+
+        if ($isActive !== null) {
+            $select->where('cp.is_active = ?', $isActive);
+        }
+
+        return $select;
+    }
+    /**
+     *  Check whether Post identifier is numeric
+     *
+     * @param AbstractModel $object
+     * @return bool
+     */
+    protected function isNumericPostIdentifier(AbstractModel $object)
+    {
+        return preg_match('/^[0-9]+$/', $object->getData('identifier'));
+    }
     /**
      * @inheritDoc
      */

@@ -2,6 +2,7 @@
 namespace Developer\Blog\Model;
 
 use Developer\Blog\Api\PostRepositoryInterface;
+use Developer\Blog\Model\Post\IdentityMap;
 use Developer\Blog\Api\Data\PostInterface;
 use Developer\Blog\Model\ResourceModel\Post as ObjectResourceModel;
 use Developer\Blog\Model\ResourceModel\Post\CollectionFactory;
@@ -39,6 +40,10 @@ class PostRepository implements PostRepositoryInterface
      * @var HydratorInterface|null
      */
     private ?HydratorInterface $hydrator;
+    /**
+     * @var IdentityMap|null
+     */
+    private ?IdentityMap $identityMap;
 
     /**
      * PostRepository constructor.
@@ -55,10 +60,12 @@ class PostRepository implements PostRepositoryInterface
         ObjectResourceModel $objectResourceModel,
         StoreManagerInterface $storeManager,
         CollectionFactory $collectionFactory,
+        ?IdentityMap $identityMap = null,
         ?HydratorInterface $hydrator = null,
         SearchResultsInterfaceFactory $searchResultsFactory
     ) {
         $this->objectFactory        = $objectFactory;
+        $this->identityMap = $identityMap;
         $this->storeManager = $storeManager;
         $this->objectResourceModel  = $objectResourceModel;
         $this->collectionFactory    = $collectionFactory;
@@ -84,6 +91,7 @@ class PostRepository implements PostRepositoryInterface
                 $object = $this->hydrator->hydrate($this->getById($postId), $data_hydrator);
             }
             $this->objectResourceModel->save($object);
+            $this->identityMap->add($object);
         } catch (\Exception $e) {
             throw new CouldNotSaveException(__($e->getMessage()));
         }
@@ -100,6 +108,8 @@ class PostRepository implements PostRepositoryInterface
         if (!$object->getId()) {
             throw new NoSuchEntityException(__('Object with id "%1" does not exist.', $id));
         }
+        $this->identityMap->add($object);
+
         return $object;
     }
 
@@ -110,6 +120,7 @@ class PostRepository implements PostRepositoryInterface
     {
         try {
             $this->objectResourceModel->delete($object);
+            $this->identityMap->remove($object->getId());
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }
